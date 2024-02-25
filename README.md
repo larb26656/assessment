@@ -2,20 +2,31 @@
 ```mermaid
   erDiagram
     lottery {
-		int id PK
-        string(6) ticket_id
-        int amount
-				decimal price
+		Integer id PK
+        String(6) ticket_id
+        Integer amount
+		BigDecimal price
     }
 
     user_ticket {
-		int id PK
-		int(10) user_id FK
-        string(6) ticket_id
-        decimal buy_price
-				dateTime buy_date
+		Integer id PK
+		String(10) user_id FK
+        String(6) ticket_id
+        BigDecimal buy_price
+		LocalDateTime buy_date
     }
 ```
+
+# Start with docker
+1. Enter this command to start db and app
+```bash
+  docker-compose up -d
+```
+
+> :warning: **Check these port is allow**: 5432 for db and 8888 for app
+
+
+
 
 # ระบบย่อยซื้อลอตเตอรี่
 แอพพลิเคชั่นธนาคารต้องการเพิ่มฟีเจอร์ให้ผู้ใช้งานสามารถซื้อลอตเตอรี่ได้ เพื่อตอบสนองกลุ่มนักเสี่ยงโชคยุคใหม่ที่ต้องการความสะดวก และไม่ต้องกังวลเรื่องการจัดเก็บลอตเตอรี่ไว้กับตัวเอง รวมทั้งการขึ้นเงินก็สามารถทำผ่านแอพพลิเคชั่นได้อย่างง่ายดาย
