@@ -67,7 +67,7 @@ class UserLotteryControllerTest {
         MvcResult mvcResult = mockMvc.perform(post("/users/" + mockUserId + "/lotteries/" + mockTicketId)
                         .contentType(MediaType.APPLICATION_JSON)
                 )
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn();
         String contentAsString = mvcResult.getResponse().getContentAsString();
 

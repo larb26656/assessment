@@ -5,6 +5,7 @@ import com.kbtg.bootcamp.posttest.features.user.lottery.model.get_my_lottery.Get
 import com.kbtg.bootcamp.posttest.features.user.lottery.model.sell_lottery.SellLotteryResDto;
 import com.kbtg.bootcamp.posttest.validator.lottery_id.IsLotteryId;
 import com.kbtg.bootcamp.posttest.validator.user_id.IsUserId;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class UserLotteryController {
     public ResponseEntity<BuyLotteryResDto> buy(@PathVariable @IsUserId String userId, @PathVariable @IsLotteryId String ticketId) {
         BuyLotteryResDto bodyRes = userTicketService.buy(userId, ticketId);
 
-        return ResponseEntity.ok(bodyRes);
+        return ResponseEntity.status(HttpStatus.CREATED).body(bodyRes);
     }
 
     @GetMapping("users/{userId}/lotteries")
