@@ -1,0 +1,30 @@
+#file: noinspection YAMLSchemaValidation
+version: '3.8'
+
+networks:
+  private-network:
+
+services:
+  backend:
+    depends_on:
+      - db
+    build: .
+    environment:
+      TZ: Asia/Bangkok
+      DATABASE_URL: jdbc:postgresql://db:5432/lotto
+    networks:
+      - private-network
+    ports:
+      - 8888:8888
+  db:
+    image: postgres:16.0
+    environment:
+      TZ: Asia/Bangkok
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: lotto
+    restart: on-failure
+    networks:
+      - private-network
+    ports:
+      - 5432:5432

@@ -16,6 +16,6 @@ public interface LotteryRepository extends JpaRepository<Lottery, Integer> {
     @Query("SELECT l FROM Lottery l WHERE l.amount > 0 AND l.ticketId = :ticketId ORDER BY l.price ASC")
     List<Lottery> findAvailableLotteryByTicketId(String ticketId);
 
-    @Query("SELECT l.ticketId FROM Lottery l WHERE l.amount > 0 GROUP BY l.ticketId")
+    @Query("SELECT l.ticketId FROM Lottery l WHERE l.amount > 0 GROUP BY l.ticketId ORDER BY l.ticketId ASC")
     List<String> findAllAvailableLottery();
 }
